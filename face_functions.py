@@ -14,10 +14,12 @@ np.set_printoptions(threshold=sys.maxsize)
 def img_to_encoding(img):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     
-    #converting img format to channel first
-    img = np.around(np.transpose(img, (2,0,1))/255.0, decimals=12)
-
-    x_train = np.array([img])
+    # Resize to match model input (160x160)
+    img = cv2.resize(img, (160, 160))
+    
+    # Normalize and prepare for model
+    img = np.array(img, dtype=np.float32) / 255.0
+    x_train = np.expand_dims(img, axis=0)
 
     #facial embedding from trained model
     embedding = model.predict_on_batch(x_train)

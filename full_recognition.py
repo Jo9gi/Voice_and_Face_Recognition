@@ -97,7 +97,7 @@ def full_recognition():
             fh, fw = roi.shape[:2]
             if fh >= 20 and fw >= 20:
                 # Get face encoding
-                img = cv2.resize(roi, (96, 96))
+                img = cv2.resize(roi, (160, 160))
                 encoding = img_to_encoding(img)
                 
                 # Find best face match

@@ -21,7 +21,6 @@ pickleshare==0.7.5
 prompt-toolkit==3.0.5
 protobuf==3.11.3
 ptyprocess==0.6.0
-PyAudio==0.2.11
 Pygments==2.6.1
 python-speech-features==0.6
 PyYAML==5.3.1
@@ -37,3 +36,5 @@ Wave==0.0.2
 wcwidth==0.1.9
 Werkzeug==1.0.1
 wrapt==1.12.1
+sounddevice==0.4.1
+soundfile==0.10.3.post1

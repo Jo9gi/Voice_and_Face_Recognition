@@ -68,7 +68,7 @@ def add_face_only():
     
     if face_found:
         # Process and save face
-        img = cv2.resize(roi, (96, 96))
+        img = cv2.resize(roi, (160, 160))
         encoding = img_to_encoding(img)
         
         db[name] = encoding

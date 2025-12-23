@@ -44,7 +44,7 @@ def test_face_recognition():
             cv2.rectangle(frame, (x-10, y-10), (x+w+10, y+h+10), (0, 255, 0), 2)
             
             # Resize and get encoding
-            img = cv2.resize(roi, (96, 96))
+            img = cv2.resize(roi, (160, 160))
             encoding = img_to_encoding(img)
             
             # Find best match
@@ -53,15 +53,18 @@ def test_face_recognition():
             
             for known_name in database:
                 dist = np.linalg.norm(np.subtract(database[known_name], encoding))
+                print(f"Distance to {known_name}: {dist:.3f}")  # Debug info
                 if dist < min_dist:
                     min_dist = dist
                     name = known_name
             
-            # Display result
-            if min_dist <= 0.4:
+            # Display result - increased threshold to 10.0
+            if min_dist <= 10.0:
+                cv2.rectangle(frame, (x-10, y-10), (x+w+10, y+h+10), (0, 255, 0), 2)
                 cv2.putText(frame, f"{name} ({min_dist:.2f})", (x, y-15), 
                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
             else:
+                cv2.rectangle(frame, (x-10, y-10), (x+w+10, y+h+10), (0, 0, 255), 2)
                 cv2.putText(frame, f"Unknown ({min_dist:.2f})", (x, y-15), 
                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
         
